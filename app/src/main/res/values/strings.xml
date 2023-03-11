@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">SuperBancoImobiliarioDMO</string>
+    <string name="app_name">Super Banco Imobiliario</string>
+    <string name="hint_edit_text_card_credit">Card Credit</string>
+    <string name="hint_edit_text_card_debit">Card Debit</string>
+    <string name="hint_edit_text_value">Value</string>
 </resources>
