@@ -1,9 +1,14 @@
 package model;
 
+import android.widget.Toast;
+
+import java.util.ArrayList;
+
 public class StarBank {
 
     private static StarBank instance = null;
-    CreditCard creditCard;
+
+    ArrayList<CreditCard> creditCards = new ArrayList<>();
 
     public StarBank() {
     }
@@ -16,31 +21,28 @@ public class StarBank {
     }
 
     public void starCreditCards(){
-        int[] j;
-        for ( int i = 1; i < 7; i++ ){
-            creditCard = new CreditCard(i, 15.000);
-            j = new int[i];
-            creditCard.setLastCasrIf(j);
+        for ( int i = 0; i < 6; i++ ){
+            creditCards.add(new CreditCard());
         }
-
+    }
+    public CreditCard getCardById(int cardId){
+        return this.creditCards.get(cardId);
     }
 
     public void roundCompleted(CreditCard creditCard, double value){
+
             creditCard.creditValue(value);
     }
 
     public boolean transfer(CreditCard payer, CreditCard receiver, double value){
-        boolean transfer = true;
-
         try {
             payer.debitValue(value);
-            receiver.debitValue(value);
+            receiver.creditValue(value);
         } catch ( Exception e ) {
-            transfer = false;
-            throw new RuntimeException(e.getMessage());
-
+            return false;
         }
-        return transfer;
+
+        return true;
     }
 
     public void receive(CreditCard card, double value){
